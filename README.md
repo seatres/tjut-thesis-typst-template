@@ -17,12 +17,35 @@
 | `guide-assets/` | 指南用的效果图 |
 | `LICENSE` | LPPL-1.3c 许可（仅覆盖模版源文件，不含字体） |
 
-## 本机编译（已装 typst：`brew install typst`）
+## 本机编译
 
-```bash
-typst compile --font-path ./fonts main.typ   # 编译一次
+### 安装 Typst
+
+**Windows**（任选其一）：
+
+```powershell
+winget install --id Typst.Typst      # 方式一：winget（Win10/11 自带，推荐）
+scoop install typst                  # 方式二：Scoop（需先装 Scoop）
+```
+
+或**手动安装**：到 <https://github.com/typst/typst/releases> 下载
+`typst-x86_64-pc-windows-msvc.zip`，解压得到 `typst.exe`，把它放进某个目录
+（如 `C:\Tools\typst\`）并将该目录加入系统环境变量 **PATH**。
+
+装好后**重开一个 PowerShell / 终端**，执行 `typst --version` 能看到版本号即成功。
+
+> macOS：`brew install typst`；Linux：`snap install typst` 或 `cargo install --locked typst-cli`。
+> 完全不想安装？用下方的 typst.app 网页版，零安装、实时预览。
+
+### 编译
+
+```powershell
+typst compile --font-path ./fonts main.typ   # 编译一次（生成 main.pdf）
 typst watch   --font-path ./fonts main.typ   # 监视模式，保存即重编（约 0.1 秒）
 ```
+
+> Windows 上路径用 `./fonts` 或 `.\fonts` 均可；`--font-path ./fonts` 不能省略，
+> 否则会因找不到中易字体而报 `unknown font family`。
 
 ## typst.app 网页版（类似 Overleaf，免费无编译时长限制）
 
